@@ -196,6 +196,23 @@ public class Picture extends SimplePicture {
 		}
 	}
 
+	public void mirrorArms() {
+		//170 238 196
+		int mirrorPoint = 200;
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		// loop through the rows
+		for (int row = 156; row < 195; row++) {
+			// loop from 13 to just before the mirror point
+			for (int col = 13; col < mirrorPoint + 200; col++) {
+				leftPixel = pixels[row][col];
+				rightPixel = pixels[mirrorPoint - row + mirrorPoint][col];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
 	/**
 	 * Method that mirrors the picture around a vertical mirror in the center of
 	 * the picture from left to right
